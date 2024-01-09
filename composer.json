@@ -1,0 +1,20 @@
+{
+    "name": "maleyeranendoye/revisions-poo",
+    "autoload": {
+        "psr-4": {
+            "App\\Models\\": "src/job-01/Models",
+            "App\\Views\\": "src/job-01/Views",
+            "App\\Controllers\\": "src/job-01/Controllers"
+            
+        }
+    },
+    "authors": [
+        {
+            "name": "maleye rane",
+            "email": "maleyeranendoye@Mydebian.lan"
+        }
+    ],
+    "require": {
+        "altorouter/altorouter": "1.1.0"
+    }
+}
