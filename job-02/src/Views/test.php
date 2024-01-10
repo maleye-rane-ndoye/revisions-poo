@@ -1,5 +1,6 @@
 <?php
 use App\Models\Product;
+use App\Models\Category;
 ob_start();
 ?>
 
@@ -8,7 +9,9 @@ ob_start();
          <?php 
 
          // Exemple
-         $product = new Product(1, 'ordinateur', ['./images/testImage.png'], 900, 'Asus 24-56', 20, '2022-01-01 00:00:00', '2022-01-01 12:00:00');
+       
+            $category = new Category(1, 'Electronique', 'Catégorie pour les produits électroniques', '2022-01-01 00:00:00', '2022-01-01 12:00:00');
+            $product = new Product(1, 'ordinateur', ['./images/testImage.png'], 900, 'Asus 24-56', 20, '2022-01-01 00:00:00', '2022-01-01 12:00:00', $category->getId());
          
          // display informations from getters
          
@@ -20,11 +23,19 @@ ob_start();
          echo "Quantité: " . $product->getQuantity() . "<br>";
          echo "Créé le: " . $product->getCreatedAt()->format('Y-m-d H:i:s') . "<br>";
          echo "Modifié le: " . $product->getUpdatedAt()->format('Y-m-d H:i:s') . "<br>";
+         echo "Category_ID: " . $product->getCategory_id() . "<br>";
+
+         echo "Category Name:" . $category->getName() . "<br>";
+         echo "Category Description:" . $category->getDescription() . "<br>";
+         echo "Category Créé le:" . $category->getCreatedAt()->format('Y-m-d H:i:s') . "<br>";
+         echo "Category Modifié le:" . $category->getUpdatedAt()->format('Y-m-d H-i-s') . "<br>";
+
+
          ?>
       </div>
 
 <?php
 $content = ob_get_clean();
-$title = "This is the job 01";
+$title = "this is the job 02";
 require_once "template.php";
 ?>
