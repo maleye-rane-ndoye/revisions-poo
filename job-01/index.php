@@ -6,10 +6,10 @@ require 'vendor/autoload.php';
 
 $router = new AltoRouter();
 
-$router->setBasePath('/B2/revisions-poo');
+$router->setBasePath('/B2/revisions-poo/job-01');
 
 
-require './src/job-01/config/route.php';
+require './src/config/route.php';
 
 
 // match current request url
@@ -22,3 +22,4 @@ if( is_array($match) && is_callable( $match['target'] ) ) {
 	// no route was matched
 	header( $_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
 }
+?>

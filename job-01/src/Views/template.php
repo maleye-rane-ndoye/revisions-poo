@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>header</title>
+    <title>template</title>
 </head>
 <body>
-      <div>
-           <button>Job 01</button>
-           <button>Job 02</button>
-      </div>
+      <main>
+             <div><?=$title?></div>
+             <div><?=$content?></div>
+      </main>
 </body>
 </html>
