@@ -1,9 +1,23 @@
 <?php
+
 namespace App\Controllers;
 
-class TestController {
+use App\Models\GetProduct;
+use App\Models\GetCategory;
 
-    public function showtestPage(){
+class TestController
+{
+    public function showtestPage()
+    {
+        
+        $getProduct = new GetProduct();
+        $getCategory = new GetCategory();
+
+        
+        $products = $getProduct->getAllProducts();
+        $categorys = $getCategory->getAllCategorys();
+
+        
         require __DIR__ . '/../Views/test.php';
     }
 }

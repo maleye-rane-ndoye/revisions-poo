@@ -1,6 +1,10 @@
 <?php
 use App\Models\Product;
 use App\Models\Category;
+
+use App\Models\GetProduct;
+use App\Models\GetCategory;
+
 ob_start();
 ?>
 
@@ -31,11 +35,33 @@ ob_start();
          echo "Category Modifié le:" . $category->getUpdatedAt()->format('Y-m-d H-i-s') . "<br>";
 
 
+
+
+
+         // Afficher les produits
+         echo "<h2>Produits :</h2>";
+         foreach ($products as $product) {
+            echo "<pre>";
+            print_r($product);
+            echo "</pre>";}
+
+
+
+         
+         // Afficher les catégories
+         echo "<h2>Catégories :</h2>";
+         foreach ($categorys as $category) {
+            echo "<pre>";
+            print_r($category);
+            echo "</pre>";
+         }
+
+
          ?>
       </div>
 
 <?php
 $content = ob_get_clean();
-$title = "this is the job 02";
+$title = "this is the job 03";
 require_once "template.php";
 ?>
