@@ -13,7 +13,7 @@ class TestController
         $getProduct = new GetProduct();
         $getCategory = new GetCategory();
         
-        $products = $getProduct->getAllProducts();
+        $allProducts = $getProduct->getAllProducts();
         $categorys = $getCategory->getAllCategorys();
 
         $productData = $getProduct->getTheProduct();
@@ -23,6 +23,8 @@ class TestController
         $productOfCategoryData = $getProduct->getProductsFromCategory();
 
         $findproduct = $getProduct->findOneById(14);
+        
+        $products = $getProduct->findAll();
 
 
         require __DIR__ . '/../Views/test.php';

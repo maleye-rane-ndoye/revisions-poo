@@ -27,9 +27,9 @@ class GetProduct extends DatabaseLog
         
         $query = $pdo->prepare("SELECT * FROM product");
         $query->execute();
-        $products = $query->fetchAll(PDO::FETCH_ASSOC);
+        $allProducts = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        return $products;
+        return $allProducts;
     }
 
 
@@ -87,7 +87,7 @@ class GetProduct extends DatabaseLog
 
 
 
-  public function findOneById(int $id)
+    public function findOneById(int $id)
     {
         $pdo = $this->getBdd();
 
@@ -107,6 +107,69 @@ class GetProduct extends DatabaseLog
             return false; // Aucun produit trouvé avec l'id spécifié
         }
     }
+
+
+
+
+    public function findAll()
+    {
+        $pdo = $this->getBdd();
+
+        $query = $pdo->prepare("SELECT * FROM product");
+        $query->execute();
+        $productsData = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $products = [];
+
+        foreach ($productsData as $productData) {
+            // Créer une nouvelle instance de la classe Product
+            $product = new GetProduct();
+
+            // Hydrater l'instance avec les données récupérées
+            $product->hydrate($productData);
+
+            // Ajouter l'instance au tableau de produits
+            $products[] = $product;
+        }
+
+        return $products;
+    }
+
+
+    public function create()
+
+    {
+    $pdo = $this->getBdd();
+
+    // Préparation de la requête d'insertion
+    $query = $pdo->prepare("INSERT INTO product (name, photos, price, description, quantity, createdAt, updatedAt, category_id) 
+                            VALUES (:name, :photos, :price, :description, :quantity, :createdAt, :updatedAt, :category_id)");
+
+    // Liaison des valeurs avec les paramètres de la requête
+    $query->bindParam(':name', $this->name);
+    $query->bindParam(':photos', $this->photos);
+    $query->bindParam(':price', $this->price);
+    $query->bindParam(':description', $this->description);
+    $query->bindParam(':quantity', $this->quantity);
+    $query->bindParam(':createdAt', $this->createdAt);
+    $query->bindParam(':updatedAt', $this->updatedAt);
+    $query->bindParam(':category_id', $this->category_id);
+
+    // Exécution de la requête
+    $success = $query->execute();
+
+    if ($success) {
+        // Si l'insertion réussie, retourner l'instance de Product avec l'id nouvellement créée
+        $this->id = $pdo->lastInsertId();
+        return $this;
+    } else {
+        // Sinon, retourner false
+        return false;
+    }
+    }
+
+
+
 
 
 

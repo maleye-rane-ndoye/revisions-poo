@@ -4,6 +4,7 @@ use App\Models\Category;
 
 use App\Models\GetProduct;
 use App\Models\GetCategory;
+
 ob_start();
 ?>
 
@@ -39,7 +40,7 @@ ob_start();
 
          // Afficher les produits
          echo "<h2>Produits :</h2>";
-         foreach ($products as $product) {
+         foreach ($allProducts as $product) {
             echo "<pre>";
             print_r($product);
             echo "</pre>";}
@@ -96,11 +97,22 @@ ob_start();
               } else {
                echo "<p>No product found with the specified ID.</p>";
              }
+
+
+         // trouver tout les produits 
+       
+            echo "<h2>All Product Found:</h2>";
+            echo "<pre>";
+            print_r($products);
+            echo "</pre>";
+          
+
+
          ?>
       </div>
 
 <?php
 $content = ob_get_clean();
-$title = "this is the job 07";
+$title = "this is the job 08";
 require_once "template.php";
 ?>

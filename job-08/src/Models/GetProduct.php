@@ -27,9 +27,9 @@ class GetProduct extends DatabaseLog
         
         $query = $pdo->prepare("SELECT * FROM product");
         $query->execute();
-        $products = $query->fetchAll(PDO::FETCH_ASSOC);
+        $allProducts = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        return $products;
+        return $allProducts;
     }
 
 
@@ -107,6 +107,33 @@ class GetProduct extends DatabaseLog
             return false; // Aucun produit trouvé avec l'id spécifié
         }
     }
+
+
+
+
+    public function findAll()
+{
+    $pdo = $this->getBdd();
+
+    $query = $pdo->prepare("SELECT * FROM product");
+    $query->execute();
+    $productsData = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $products = [];
+
+    foreach ($productsData as $productData) {
+        // Créer une nouvelle instance de la classe Product
+        $product = new GetProduct();
+
+        // Hydrater l'instance avec les données récupérées
+        $product->hydrate($productData);
+
+        // Ajouter l'instance au tableau de produits
+        $products[] = $product;
+    }
+
+    return $products;
+}
 
 
 

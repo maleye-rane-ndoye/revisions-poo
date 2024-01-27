@@ -6,7 +6,7 @@ require 'vendor/autoload.php';
 
 $router = new AltoRouter();
 
-$router->setBasePath('/B2/revisions-poo/job-07');
+$router->setBasePath('/B2/revisions-poo/job-08');
 
 
 require './src/config/route.php';
